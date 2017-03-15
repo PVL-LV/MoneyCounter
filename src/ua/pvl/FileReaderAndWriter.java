@@ -16,6 +16,8 @@ public class FileReaderAndWriter {
 
     private static Map<String, Double> listOfAmountOfMoney = new HashMap<>();
 
+    public List<String> listOnePersonsMoney = new ArrayList<>();
+
     public FileReaderAndWriter(List<UserParameters> userCommandList) {
 
         CommandGetter comGetter = new CommandGetter(userCommandList);
@@ -25,9 +27,9 @@ public class FileReaderAndWriter {
         currencyType = comGetter.getCurrencyType();
     }
 
-    public void readFile() {
+    FileParser fp = new FileParser();
 
-        List<String> listOnePersonsMoney = new ArrayList<>();
+    public void readFile() {
 
         BufferedReader br = null;
         try {
@@ -36,9 +38,11 @@ public class FileReaderAndWriter {
 
             while ((line = br.readLine()) != null) {
                 br.lines();
-                
+
                 if(!FileParser.isEndOfPersonMoneyLine(line)) {
                     listOnePersonsMoney.add(line);
+                } else {
+                    fp.parseAndCleanList(listOnePersonsMoney, currencyType);
                 }
 
 
