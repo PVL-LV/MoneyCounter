@@ -57,8 +57,6 @@ public class FileReaderAndWriter {
 
     public void writeFile()  throws IOException  {
 
-
-
         String wfp;
         PrintWriter pw;
 
