@@ -8,7 +8,7 @@ public class CommandGetter {
 
     private String inPath = null;
     private String outPath = null;
-    private String currencyType = "USD";
+    private String currencyType = "$";
 
     List<UserParameters> userCommandList = new ArrayList<>();
 
