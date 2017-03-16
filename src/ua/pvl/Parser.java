@@ -14,7 +14,7 @@ public class Parser {
         commandList.add(new ParameterDefiner(ParameterDefiner.CURRENCY_TYPE, ParameterDefiner.STRING_TYPE, false));
     }
 
-    public static void executeParser (String[] args) {
+    public static void executeParser(String[] args) {
 
         ArgsParser ap = new ArgsParser(args);
         userCommandList = ap.parseAndAddToList();

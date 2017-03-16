@@ -1,8 +1,9 @@
 package ua.pvl;
 
 public class Main {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        Parser np = new Parser();
+        np.executeParser(args);
     }
 }

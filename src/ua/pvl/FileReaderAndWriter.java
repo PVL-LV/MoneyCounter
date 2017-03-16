@@ -12,8 +12,6 @@ public class FileReaderAndWriter {
     private static String outPath;
     private static String currencyType;
 
-    private static List<String> wholeFile = new ArrayList<>();
-
     private static Map<String, Double> listOfAmountOfMoney = new HashMap<>();
 
     public List<String> listOnePersonsMoney = new ArrayList<>();
@@ -42,22 +40,9 @@ public class FileReaderAndWriter {
                 if(!FileParser.isEndOfPersonMoneyLine(line)) {
                     listOnePersonsMoney.add(line);
                 } else {
-                    fp.parseAndCleanList(listOnePersonsMoney, currencyType);
+                    listOfAmountOfMoney.putAll(fp.parseAndCleanList(listOnePersonsMoney, currencyType));
+                    listOnePersonsMoney.clear();
                 }
-
-
-                if (FileParser.isANameLine(line)) {
-
-                    atm.addNameToMap(listOfAmountOfMoney, line);
-                } else {
-                    if(FileParser.isAMoneyLine(line)) {
-                        atm.addMoneyToMap();
-                    }
-                }
-
-
-
-                wholeFile += line + "\r\n";
             }
         } catch (Exception e) {
             System.out.println("Some mistake");
