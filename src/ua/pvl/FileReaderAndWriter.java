@@ -1,6 +1,7 @@
 package ua.pvl;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,17 +62,14 @@ public class FileReaderAndWriter {
         PrintWriter pw;
 
         if (outPath != null) {
-            pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(outPath))); //
-
+            pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(outPath), true), StandardCharsets.UTF_8));
         } else {
             pw = new PrintWriter(new OutputStreamWriter(System.out, "UTF-8"), true);
-            // TODO solve problem with cyrillic words written to output file
         }
 
         try {
             for (Map.Entry<String, Double> entry : listOfAmountOfMoney.entrySet()) {
-                wfp = (entry.getKey() + " = " + entry.getValue() + "\r\n");
-
+                wfp = (entry.getKey() + " = " + currencyType + entry.getValue() + "\r\n");
                 pw.write(wfp);
             }
         }finally {

@@ -6,8 +6,6 @@ import java.util.Map;
 
 public class FileParser {
 
-
-
     public Map<String, Double> parseAndCleanList(List<String> listOnePersonsMoney, String currencyType) {
 
         Map<String, Double> mp = new HashMap<>();
@@ -22,16 +20,12 @@ public class FileParser {
                 if (isAMoneyLine(str)){
                    double money = getAndConvertCurrency(str, currencyType);
                    amountOfMoney += money;
-                } else {
-                    mp.put(name, amountOfMoney);
-
                 }
             }
         }
+        mp.put(name, amountOfMoney);
         return mp;
     }
-
-
 
     private double getAndConvertCurrency(String str, String currencyType) {
 
@@ -58,7 +52,10 @@ public class FileParser {
         boolean bool = false;
         str = str.trim();
         for(int i = 0; i < str.length(); i++) {
-            if(str.charAt(i) != '=' || str.charAt(i) != '-') {
+            if(str.charAt(i) == '=' && str.charAt(i) != '-') {
+                bool = false;
+                break;
+            } else {
                 bool = true;
             }
         }
@@ -71,6 +68,7 @@ public class FileParser {
         for(int i = 0; i < str.length(); i++) {
             if(str.charAt(i) == '=' &&  str.charAt(++i) != '-') {
                 bool = true;
+                break;
             }
         }
         return bool;
@@ -79,15 +77,12 @@ public class FileParser {
     public static boolean isEndOfPersonMoneyLine(String str) {
 
         boolean bool = false;
-        for(int i = 0; i < str.length(); i++) {
+        for(int i = 0; i < str.length() - 1; i++) {
             if(str.charAt(i) == '-' &&  str.charAt(++i) == '-') {
                 bool = true;
+                break;
             }
         }
         return bool;
     }
-
-
-
-
 }

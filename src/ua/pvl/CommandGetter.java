@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CommandGetter {
 
-    private String inPath = null;
-    private String outPath = null;
+    private String inputPath = null;
+    private String outputPath = null;
     private String currencyType = "$";
 
     List<UserParameters> userCommandList = new ArrayList<>();
@@ -27,11 +27,11 @@ public class CommandGetter {
             String userParamValue = userParam.getValue();
 
             if(userParamName.equals(ParameterDefiner.INPUT_PATH)) {
-                inPath = userParamValue;
+                inputPath = userParamValue;
 
             }else {
                 if(userParamName.equals(ParameterDefiner.OUTPUT_PATH)) {
-                    outPath = userParamValue;
+                    outputPath = userParamValue;
 
                 } else {
                     if (userParamName.equals(ParameterDefiner.CURRENCY_TYPE)) {
@@ -43,15 +43,14 @@ public class CommandGetter {
     }
 
     public String getInPath() {
-        return inPath;
+        return inputPath;
     }
 
     public String getOutPath() {
-        return outPath;
+        return outputPath;
     }
 
     public String getCurrencyType() {
         return currencyType;
     }
-
 }

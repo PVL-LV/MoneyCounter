@@ -8,7 +8,6 @@ public class ParamValidator {
     List <ParameterDefiner> commandList = new ArrayList<>();
     List <UserParameters> userCommandList = new ArrayList<>();
 
-
     public ParamValidator(List<ParameterDefiner> commandList,List <UserParameters> userCommandList) {
         this.commandList = commandList;
         this.userCommandList = userCommandList;
@@ -22,10 +21,8 @@ public class ParamValidator {
             boolean defComRequired = p.isRequired();
 
             for (UserParameters up : userCommandList) {
-
                 String userComName = up.getName();
                 String userComValue = up.getValue();
-
 
                 if (defComName.equals(userComName) && userComValue != null && userComValue.length() > 0) {
                     if (defComType.equals(ParameterDefiner.CURRENCY_TYPE) && userComValue.length() != 3) {
@@ -37,7 +34,6 @@ public class ParamValidator {
             if (defComRequired) {
                 throw new ValidationException("Required param " + p.getName() + " is not found");
             }
-
         }
     }
 }

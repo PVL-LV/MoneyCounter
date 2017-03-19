@@ -1,5 +1,6 @@
 package ua.pvl;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class CurrencyConverter {
@@ -13,8 +14,6 @@ public class CurrencyConverter {
         currencies.put("₴", 26.76);
     }
 
-
-
     public double convertMoney(double money, String currencyType, String cr) {
 
         double rateToDollars = currencies.get(cr) ; // find the rate from source to dollars (may be 1.0).
@@ -22,9 +21,9 @@ public class CurrencyConverter {
 
         double targetAmount = (money / rateToDollars) * rateToTarget;
 
+        DecimalFormat df = new DecimalFormat("#.##");
+        targetAmount = Double.parseDouble(df.format(targetAmount));
+
         return targetAmount;
     }
-
-
-
 }
